@@ -99,21 +99,40 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "firstName_ASC"
+  | "firstName_DESC"
+  | "lastName_ASC"
+  | "lastName_DESC"
+  | "cardNumber_ASC"
+  | "cardNumber_DESC"
+  | "cvv_ASC"
+  | "cvv_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export interface UserCreateInput {
   id?: ID_Input;
-  name: String;
+  firstName: String;
+  lastName?: String;
+  cardNumber?: String;
+  cvv?: String;
 }
 
 export interface UserUpdateInput {
-  name?: String;
+  firstName?: String;
+  lastName?: String;
+  cardNumber?: String;
+  cvv?: String;
 }
 
 export interface UserUpdateManyMutationInput {
-  name?: String;
+  firstName?: String;
+  lastName?: String;
+  cardNumber?: String;
+  cvv?: String;
 }
 
 export interface UserWhereInput {
@@ -131,20 +150,62 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
+  firstName?: String;
+  firstName_not?: String;
+  firstName_in?: String[] | String;
+  firstName_not_in?: String[] | String;
+  firstName_lt?: String;
+  firstName_lte?: String;
+  firstName_gt?: String;
+  firstName_gte?: String;
+  firstName_contains?: String;
+  firstName_not_contains?: String;
+  firstName_starts_with?: String;
+  firstName_not_starts_with?: String;
+  firstName_ends_with?: String;
+  firstName_not_ends_with?: String;
+  lastName?: String;
+  lastName_not?: String;
+  lastName_in?: String[] | String;
+  lastName_not_in?: String[] | String;
+  lastName_lt?: String;
+  lastName_lte?: String;
+  lastName_gt?: String;
+  lastName_gte?: String;
+  lastName_contains?: String;
+  lastName_not_contains?: String;
+  lastName_starts_with?: String;
+  lastName_not_starts_with?: String;
+  lastName_ends_with?: String;
+  lastName_not_ends_with?: String;
+  cardNumber?: String;
+  cardNumber_not?: String;
+  cardNumber_in?: String[] | String;
+  cardNumber_not_in?: String[] | String;
+  cardNumber_lt?: String;
+  cardNumber_lte?: String;
+  cardNumber_gt?: String;
+  cardNumber_gte?: String;
+  cardNumber_contains?: String;
+  cardNumber_not_contains?: String;
+  cardNumber_starts_with?: String;
+  cardNumber_not_starts_with?: String;
+  cardNumber_ends_with?: String;
+  cardNumber_not_ends_with?: String;
+  cvv?: String;
+  cvv_not?: String;
+  cvv_in?: String[] | String;
+  cvv_not_in?: String[] | String;
+  cvv_lt?: String;
+  cvv_lte?: String;
+  cvv_gt?: String;
+  cvv_gte?: String;
+  cvv_contains?: String;
+  cvv_not_contains?: String;
+  cvv_starts_with?: String;
+  cvv_not_starts_with?: String;
+  cvv_ends_with?: String;
+  cvv_not_ends_with?: String;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -203,21 +264,30 @@ export interface BatchPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
-  name: String;
+  firstName: String;
+  lastName?: String;
+  cardNumber?: String;
+  cvv?: String;
 }
 
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  cardNumber: () => Promise<String>;
+  cvv: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  firstName: () => Promise<AsyncIterator<String>>;
+  lastName: () => Promise<AsyncIterator<String>>;
+  cardNumber: () => Promise<AsyncIterator<String>>;
+  cvv: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserEdge {
@@ -264,19 +334,28 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface User {
   id: ID_Output;
-  name: String;
+  firstName: String;
+  lastName?: String;
+  cardNumber?: String;
+  cvv?: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  cardNumber: () => Promise<String>;
+  cvv: () => Promise<String>;
 }
 
 export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  firstName: () => Promise<AsyncIterator<String>>;
+  lastName: () => Promise<AsyncIterator<String>>;
+  cardNumber: () => Promise<AsyncIterator<String>>;
+  cvv: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserConnection {

@@ -52,7 +52,10 @@ type Subscription {
 
 type User {
   id: ID!
-  name: String!
+  firstName: String!
+  lastName: String
+  cardNumber: String
+  cvv: String
 }
 
 type UserConnection {
@@ -63,7 +66,10 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
-  name: String!
+  firstName: String!
+  lastName: String
+  cardNumber: String
+  cvv: String
 }
 
 type UserEdge {
@@ -74,13 +80,22 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  cardNumber_ASC
+  cardNumber_DESC
+  cvv_ASC
+  cvv_DESC
 }
 
 type UserPreviousValues {
   id: ID!
-  name: String!
+  firstName: String!
+  lastName: String
+  cardNumber: String
+  cvv: String
 }
 
 type UserSubscriptionPayload {
@@ -102,11 +117,17 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
-  name: String
+  firstName: String
+  lastName: String
+  cardNumber: String
+  cvv: String
 }
 
 input UserUpdateManyMutationInput {
-  name: String
+  firstName: String
+  lastName: String
+  cardNumber: String
+  cvv: String
 }
 
 input UserWhereInput {
@@ -124,20 +145,62 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  cardNumber: String
+  cardNumber_not: String
+  cardNumber_in: [String!]
+  cardNumber_not_in: [String!]
+  cardNumber_lt: String
+  cardNumber_lte: String
+  cardNumber_gt: String
+  cardNumber_gte: String
+  cardNumber_contains: String
+  cardNumber_not_contains: String
+  cardNumber_starts_with: String
+  cardNumber_not_starts_with: String
+  cardNumber_ends_with: String
+  cardNumber_not_ends_with: String
+  cvv: String
+  cvv_not: String
+  cvv_in: [String!]
+  cvv_not_in: [String!]
+  cvv_lt: String
+  cvv_lte: String
+  cvv_gt: String
+  cvv_gte: String
+  cvv_contains: String
+  cvv_not_contains: String
+  cvv_starts_with: String
+  cvv_not_starts_with: String
+  cvv_ends_with: String
+  cvv_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
