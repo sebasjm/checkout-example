@@ -13,6 +13,24 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import { Formik } from 'formik';
+
+function RealFormThatSendData({children}) {
+  return <Formik
+    initialValues={{
+    }}
+    onSubmit={(values, { setSubmitting }) => {
+      setTimeout(() => {
+        alert(JSON.stringify(values, null, 2));
+        setSubmitting(false);
+      }, 400);
+    }}
+  render={formik => (
+    <form onSubmit={formik.handleSubmit}>
+      {children(formik)}
+    </form>
+    )}/>
+}
 
 const styles = theme => ({
   appBar: {
@@ -53,14 +71,14 @@ const styles = theme => ({
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step) {
+function getStepContent(step, formik) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm {...formik}/>;
     case 1:
-      return <PaymentForm />;
+      return <PaymentForm {...formik}/>;
     case 2:
-      return <Review />;
+      return <Review {...formik}/>;
     default:
       throw new Error('Unknown step');
   }
@@ -71,7 +89,8 @@ class Checkout extends React.Component {
     activeStep: 0,
   };
 
-  handleNext = () => {
+  handleNext = submitForm => () => {
+    if (this.state.activeStep === steps.length -1) submitForm();
     this.setState(state => ({
       activeStep: state.activeStep + 1,
     }));
@@ -115,6 +134,7 @@ class Checkout extends React.Component {
                 </Step>
               ))}
             </Stepper>
+            <RealFormThatSendData>{formik => (
             <React.Fragment>
               {activeStep === steps.length ? (
                 <React.Fragment>
@@ -128,7 +148,7 @@ class Checkout extends React.Component {
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  {getStepContent(activeStep)}
+                  {getStepContent(activeStep, formik)}
                   <div className={classes.buttons}>
                     {activeStep !== 0 && (
                       <Button onClick={this.handleBack} className={classes.button}>
@@ -138,7 +158,7 @@ class Checkout extends React.Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={this.handleNext}
+                      onClick={this.handleNext(formik.submitForm)}
                       className={classes.button}
                     >
                       {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
@@ -147,6 +167,7 @@ class Checkout extends React.Component {
                 </React.Fragment>
               )}
             </React.Fragment>
+            )}</RealFormThatSendData>                
           </Paper>
         </main>
       </React.Fragment>
