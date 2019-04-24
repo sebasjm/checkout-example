@@ -1,0 +1,6 @@
+endpoint: https://eu1.prisma.sh/sebastian-javier-marchano-df14e4/checkout-backend/dev
+datamodel: datamodel.prisma
+
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/
