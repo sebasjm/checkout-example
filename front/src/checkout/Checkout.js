@@ -14,16 +14,18 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import { Formik } from 'formik';
+import axios from 'axios';
+
+const HOST = 'https://express-5eba675v6.now.sh'
 
 function RealFormThatSendData({children}) {
   return <Formik
     initialValues={{
     }}
-    onSubmit={(values, { setSubmitting }) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-      }, 400);
+    onSubmit={async (values, { setSubmitting }) => {
+      const { id } = await axios.post(`${HOST}/user`, values)
+      console.log("user created with id", id)
+      setSubmitting(false);
     }}
   render={formik => (
     <form onSubmit={formik.handleSubmit}>
